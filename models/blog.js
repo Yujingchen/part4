@@ -10,7 +10,11 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    likes: Number
+    likes: Number,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 })
 
 blogSchema.set('toJSON', {
@@ -21,8 +25,11 @@ blogSchema.set('toJSON', {
     }
 })
 
-const Blog = mongoose.model('Blog', blogSchema)
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+const Blog = mongoose.model('Blog', blogSchema);
 
 
-module.exports = Blog
+module.exports = Blog;
 

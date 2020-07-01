@@ -1,4 +1,7 @@
 const listHelper = require('../utils/list_helper')
+const bcrypt = require('bcrypt')
+const User = require('../models/user')
+
 test('dummy returns one', () => {
     const blogs = []
 

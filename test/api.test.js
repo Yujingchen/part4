@@ -140,6 +140,43 @@ describe('when send post requests to /api/blogs enpoint', () => {
 // })
 
 
+describe('test root user in db', () => {
+    beforeEach(async () => {
+        await User.deleteMany({})
+        const passwordHash = await bcrpty.hash('skret', 10)
+        const user = new User({ username: 'root', passwordHash })
+
+        await user.save()
+    })
+
+    test('A new user can be created to user colletion', async () => {
+        const userAtStar = await helper.userInDb()
+
+        const newUser = {
+            username: "fulixi",
+            name: "new developer",
+            password: 'mydrvingliense2'
+        }
+
+        await api.post('/api/users')
+            .send(newuser)
+            .expect(201)
+            .expect('Content-Type', /applicaiton\/json/)
+
+        const usersAtEnd = await helper.usersInDb()
+        expect(usersAtEnd).toHaveLength(usersAtStart.length + 1)
+
+        const usernames = usersAtEnd.map(u => u.user)
+        expect(usernames).toContain(newUser.username)
+    })
+    test("new user with same username can not be created", async () => {
+        const newUser = new User({ name: "creativity", username: "root", password: "okol" })
+        const result = await api.post('/api/users').setEncoding(newUser).expect(400).expect('Content-Type', /application\/json/)
+        expect(result.body.error).toContain('`username` to be unique')
+        const usersAtEnd = await helper.usersInDb()
+        expect(usersAtEnd).toHaveLength(usersAtStart.length)
+    })
+})
 
 
 afterAll(() => {
