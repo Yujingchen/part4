@@ -13,7 +13,7 @@ const blogSchema = new mongoose.Schema({
     likes: Number,
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: 'User'
     }
 })
 
@@ -25,11 +25,11 @@ blogSchema.set('toJSON', {
     }
 })
 
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-const Blog = mongoose.model('Blog', blogSchema);
+mongoose.set('useNewUrlParser', true)
+mongoose.set('useFindAndModify', false)
+mongoose.set('useCreateIndex', true)
+const Blog = mongoose.model('Blog', blogSchema)
 
 
-module.exports = Blog;
+module.exports = Blog
 
