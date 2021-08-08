@@ -1,5 +1,6 @@
 const palindrome = (string) => {
-    return string.split('')
+    return string
+        .split('')
         .reverse()
         .join('')
 }

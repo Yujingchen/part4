@@ -19,7 +19,7 @@ const favouriteBlogs = (blogs) => {
 }
 
 let mostBlogs = (blogs) => {
-    let orderByAuthor = _.sortBy(blogs, [function (o) { return o.author; }]);
+    let orderByAuthor = _.sortBy(blogs, [function (o) { return o.author }])
     let most = 0
     let mostpopularauthor
     let curr = 0
@@ -50,7 +50,7 @@ let mostBlogs = (blogs) => {
 
 
 let mostLikes = (blogs) => {
-    let orderByAuthor = _.sortBy(blogs, [function (o) { return o.author; }]);
+    let orderByAuthor = _.sortBy(blogs, [function (o) { return o.author }])
     let most = 0
     let mostpopularauthor
     let curr = 0
