@@ -5,7 +5,9 @@ const User = require('../models/user')
 userRouter.post('/', async (request, response) => {
     const body = request.body
     const saltRounds = 10
-    console.log(body)
+    if (body.username.length <3) {
+        response.status(401).send({'error': 'username length must be at least 3'})
+    }
     if (body.password.length < 3) {
         response.status(401).send({ 'error': 'password length must be at least 3' })
     }
@@ -20,7 +22,7 @@ userRouter.post('/', async (request, response) => {
 })
 
 userRouter.get('/', async (request, response) => {
-    const users = await User.find({}).populate('blogs', { title: 1, url: 1 })
+    const users = await User.find({}).populate('blogs', { title: 1, url: 1, author: 1 })
     response.json(users.map(u => u.toJSON()))
 })
 

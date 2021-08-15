@@ -5,14 +5,18 @@ const initialBlogs = [
     {
         title: 'awesome day!',
         author: 'kate',
-        url: 'www.music.com'
+        url: 'www.music.com',
+        user: '61195050e54bcf5a0a8d90da'
     },
     {
         title: 'Tonight the music is good!',
         author: 'kate',
-        url: 'www.tonight.com'
+        url: 'www.tonight.com',
+        user: '61195050e54bcf5a0a8d90da'
     },
 ]
+
+const initialUserToken = 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYxMTk1MDUwZTU0YmNmNWEwYThkOTBkYSIsImlhdCI6MTYyOTA0ODk5NywiZXhwIjoxNjI5MDU4OTk3fQ.GPqIMdsz1Yhz-hKFDrUOgeCUbYXNOsLS7_ndcbWn_4E'
 
 const nonExistingId = async () => {
     const blog = new Blog({
@@ -36,6 +40,7 @@ const usersInDb = async () => {
 }
 
 module.exports = {
+    initialUserToken,
     initialBlogs,
     nonExistingId,
     blogsInDb,
